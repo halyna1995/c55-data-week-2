@@ -1,0 +1,13 @@
+transaction_id,product_name,category,price,quantity,customer_email,date,revenue,vat
+1,Laptop Pro,Electronics,999.99,2,alice@example.com,2024-03-15,1999.98,420.0
+2,Wireless Mouse,Electronics,29.99,5,bob@company.com,2024-03-15,149.95,31.49
+3,Usb Cable,Electronics,4.99,10,,2024-03-16,49.9,10.48
+4,Office Chair,Furniture,349.5,1,charlie@work.org,2024-03-16,349.5,73.39
+5,Standing Desk,Furniture,599.0,1,charlie@work.org,not_a_date,599.0,125.79
+9,Webcam Hd,Electronics,54.99,1,,2024-03-18,54.99,11.55
+10,Desk Lamp,Furniture,34.99,4,grace@university.edu,2024-03-19,139.96,29.39
+11,Noise Cancelling Headphones,Electronics,199.99,1,alice@example.com,2024-03-19,199.99,42.0
+12,Cable Management Kit,Furniture,15.99,6,henry@business.com,2024-03-20,95.94,20.15
+13,Ergonomic Mouse Pad,Furniture,24.99,3,ivan@email.com,2024-03-20,74.97,15.74
+14,Laptop Stand,Furniture,45.99,2,jenny@work.org,2024-03-21,91.98,19.32
+15,Bluetooth Speaker,Unknown,39.99,1,karl@startup.io,2024-03-21,39.99,8.4

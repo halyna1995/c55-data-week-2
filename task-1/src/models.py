@@ -11,23 +11,22 @@ gets written to the output CSV.
 from dataclasses import dataclass
 
 
-# TODO 1: Define a @dataclass called Transaction with these fields:
-#   transaction_id: int
-#   product_name: str
-#   category: str
-#   price: float
-#   quantity: int
-#   customer_email: str
-#   date: str
-#   revenue: float = 0.0
-#   vat: float = 0.0
-#
-# TODO 2: Add __post_init__ that raises ValueError when:
-#   - self.price < 0  (with a message naming the bad value)
-#   - not self.product_name.strip()  (empty / whitespace-only product name)
+def __post_init__(self):
+    if self.price < 0:
+        raise ValueError(f"Price cannot be negative: {self.price}")
+    if not self.product_name.strip():
+        raise ValueError("Product name cannot be empty or whitespace-only.")
 
-
-# Replace this stub with your dataclass:
 @dataclass
 class Transaction:
-    transaction_id: int  # TODO: replace this stub with the full field list above
+    """A sales transaction."""
+    transaction_id: int  
+    product_name: str
+    category: str
+    price: float
+    quantity: int
+    customer_email: str
+    date: str
+    revenue: float = 0.0
+    vat: float = 0.0
+    

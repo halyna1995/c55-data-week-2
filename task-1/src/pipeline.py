@@ -31,29 +31,43 @@ from .transforms import (
 
 def read_csv(path: str) -> list[dict]:
     """Read a CSV file into a list of dicts. I/O only — no business rules."""
-    # TODO: implement using csv.DictReader.
-    raise NotImplementedError
+    with open(path, newline='', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        return list(reader)
 
 
 def write_csv(rows: list[dict], path: str) -> None:
     """Write a list of dicts to CSV. I/O only — no business rules."""
-    # TODO: implement using csv.DictWriter.
-    raise NotImplementedError
-
+    if not rows:
+        raise ValueError("No data to write.")
+    
+    with open(path, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
 
 def run() -> None:
+    """Run the full pipeline: read, transform, write, summarise."""
     raw = read_csv(INPUT_PATH)
     data = remove_invalid(raw)
     data = clean_fields(data)
     data = filter_zero_quantity(data)
     data = calculate_revenue(data)
 
-    # Materialise as Transaction instances so the dataclass __post_init__
-    # acts as a final guard before serialisation.
-    # TODO: cast price / quantity / revenue / vat to the right types here
-    # if your transforms left them as strings, then iterate over `data`
-    # to build Transaction(**row) for each cleaned row.
-    transactions = [Transaction(**row) for row in data]
+    transactions = [
+        Transaction(
+            transaction_id=int(row['transaction_id']),
+            product_name=row['product_name'],
+            category=row['category'],
+            price=float(row['price']),
+            quantity=int(row['quantity']),
+            customer_email=row['customer_email'],
+            date=row['date'],
+            revenue=float(row['revenue']),
+            vat=float(row['vat'])
+            )
+        for row in data
+    ]
 
     # Output dir must exist. Use pathlib for cross-platform safety.
     Path(OUTPUT_PATH).parent.mkdir(parents=True, exist_ok=True)
