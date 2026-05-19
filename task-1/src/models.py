@@ -20,6 +20,7 @@ def __post_init__(self):
 @dataclass
 class Transaction:
     """A sales transaction."""
+  
     transaction_id: int  
     product_name: str
     category: str
