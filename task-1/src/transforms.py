@@ -27,7 +27,7 @@ def remove_invalid(rows: list[dict]) -> list[dict]:
         if product_name == "" or price < 0:
             continue
 
-        result.append({**row})
+        result.append({row})
 
     return result
 
