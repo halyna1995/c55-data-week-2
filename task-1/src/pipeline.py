@@ -39,7 +39,7 @@ def read_csv(path: str) -> list[dict]:
 def write_csv(rows: list[dict], path: str) -> None:
     """Write a list of dicts to CSV. I/O only — no business rules."""
     if not rows:
-        raise ValueError("No data to write.")
+        return
     
     with open(path, 'w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=rows[0].keys())
